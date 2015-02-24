@@ -1,0 +1,94 @@
+<html>
+  <html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- Load the d3 library. -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <style>
+    /* put a border around the svg element so we can see the coordinate system better. */
+    body { font-family: "Open Sans"; } div { margin: 30px; }
+    svg { }
+    /* The default styles for axis elements stink. What should they be? */
+    .axis path { fill: none; stroke: #777; }
+    .axis line { stroke: #777; }
+    </style>
+  </head>
+
+  <body>
+    <h3>Correlaton between Internet Access and Agricultural Production</h3>
+
+    <!-- SVG element-->
+    <div id="canvas"></div>
+
+    <!-- Custom Script -->
+    <script>
+      var numbers;
+
+      d3.json("data.json", function (error, data){
+        numbers = data;
+
+        var maxCrop = d3.max(numbers,
+          function (d) {
+            return d.CropProductionIndex;
+          });
+
+        var maxGDP = d3.max(numbers,
+          function (d) {
+            return d.GDPPerCapita;
+          });
+
+        var maxInternet = d3.max(numbers,
+          function (d) {
+            return d.InternetUser;
+          });
+
+        var svg = d3.select("#canvas").append("svg")
+        .attr("height", 1000)
+        .attr("width", 1000);
+
+        //x-axis label
+        svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "end")
+        .attr("x", 950)
+        .attr("y", 450)
+        .text("Internet users (per 100 people)");
+
+        //y-axis label
+        svg.append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "end")
+        .attr("x", 180)
+        .attr("y", 6)
+        .attr("dy", ".75em")
+        .text("Crop Production Index");
+
+        var xScale = d3.scale.linear().range([40, 800]).domain([0,maxInternet]);//Internet Access
+        var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop]);//Crop Production
+        var radiusScale = d3.scale.sqrt().range([0, 50]).domain([0, maxGDP]);//GDP Per Capita
+
+        var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+        var yAxis = d3.svg.axis().scale(yScale).orient("left");
+        svg.append("g").call(xAxis).attr("class", "axis").attr("transform", "translate(0,400)");
+        svg.append("g").call(yAxis).attr("class", "axis").attr("transform", "translate(40,0)");
+
+        var contents = svg.append("g");
+
+        var circles = svg.selectAll("circle").data(numbers)
+        .enter().append("circle");
+
+        circles
+        .attr("cx", function (d) { return xScale(d.InternetUser) })
+        .attr("cy", function (d) { return yScale(d.CropProductionIndex) })
+        .attr("r",  function (d) { return radiusScale(d.GDPPerCapita)})
+        .attr("opacity", 0.3);
+
+        var texts = contents.selectAll("text").data(numbers).enter().append("text");
+  
+        texts.attr("x", function(d) { return xScale(d.InternetUser) })
+        .attr("y", function(d) { return yScale(d.CropProductionIndex) })
+        .text(function(d) { return d.CountryCode; });
+      });
+    </script>
+</html>
