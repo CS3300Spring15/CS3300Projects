@@ -59,10 +59,10 @@
         svg.append("text")
         .attr("class", "y label")
         .attr("text-anchor", "end")
-        .attr("x", 180)
+        .attr("x", 470)
         .attr("y", 6)
         .attr("dy", ".75em")
-        .text("Crop Production Index");
+        .text("Crop Production Index adjuested to Employment in Agriculture");
 
         var xScale = d3.scale.linear().range([40, 800]).domain([0,maxInternet]);//Internet Access
         var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop]);//Crop Production
@@ -82,7 +82,15 @@
         .attr("cx", function (d) { return xScale(d.InternetUser) })
         .attr("cy", function (d) { return yScale(d.CropProductionIndex) })
         .attr("r",  function (d) { return radiusScale(d.GDPPerCapita)})
-        .attr("opacity", 0.3);
+        .attr("opacity", 0.3)
+        .style("fill", function (d) {
+            if(d.GDPPerCapita > 17111.26859){
+                return "#FBEC5D";
+            }
+            else{
+                return "#FFFDD0";
+            }
+        });
 
         var texts = contents.selectAll("text").data(numbers).enter().append("text");
   
