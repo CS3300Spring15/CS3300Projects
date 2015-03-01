@@ -3,8 +3,10 @@
   <head>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <!-- Load the d3 library. -->
-    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="d3.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
     <style>
     /* put a border around the svg element so we can see the coordinate system better. */
     body { font-family: "Open Sans"; } div { margin: 30px; }
@@ -47,6 +49,8 @@
         .attr("height", 1000)
         .attr("width", 1000);
 
+        var g = svg.append("g");
+
         //x-axis label
         svg.append("text")
         .attr("class", "x label")
@@ -63,6 +67,19 @@
         .attr("y", 6)
         .attr("dy", ".75em")
         .text("Crop Production Index adjuested to Employment in Agriculture");
+
+
+        svg.append("text")
+                    .attr("x", 850)
+                    .attr("y", 190)
+                    .text("Legend:");
+
+        svg.append("rect").attr("x",845)
+                   .attr("y",175)
+                   .attr("height", 105)
+                   .attr("width",154)
+                   .style("fill","none")
+                   .style("stroke","black");
 
         var xScale = d3.scale.linear().range([40, 800]).domain([0,maxInternet]);//Internet Access
         var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop]);//Crop Production
@@ -82,21 +99,146 @@
         .attr("cx", function (d) { return xScale(d.InternetUser) })
         .attr("cy", function (d) { return yScale(d.CropProductionIndex) })
         .attr("r",  function (d) { return radiusScale(d.GDPPerCapita)})
-        .attr("opacity", 0.3)
+        .attr("opacity", 0.8)
         .style("fill", function (d) {
-            if(d.GDPPerCapita > 17111.26859){
-                return "#FBEC5D";
+            if (d.Region == "Eur"){
+                return "darkseagreen";
+            }
+            else if (d.Region == "Asia") {
+                return "lightcoral";
+            }
+            else if (d.Region == "Africa") {
+                return "indianred";
+            }
+            else if (d.Region == "SA") {
+                return "tomato";
+            }
+            else if (d.Region == "EE"){
+                return "lemonchiffon";
+            }
+            else if (d.Region == "CA" ){
+                return "lightsalmon";
             }
             else{
-                return "#FFFDD0";
+                return "darkgreen";
             }
         });
+
 
         var texts = contents.selectAll("text").data(numbers).enter().append("text");
   
         texts.attr("x", function(d) { return xScale(d.InternetUser) })
         .attr("y", function(d) { return yScale(d.CropProductionIndex) })
-        .text(function(d) { return d.CountryCode; });
+        .text(function(d) { return d.CountryCode; })
+        .style({opacity:'0.0'});
+
+
+        var width = 960,
+            height = 500;
+
+        // A projection is like a scale. It takes an argument in the form of a long/lat coordinate
+        //  and returns an x,y coordinate.
+        // Here are a few common mistakes:
+        //   1. The input and output are arrays, not lists of values.
+        //    WRONG: projection(-76, 42)
+        //    RIGHT: projection([-76, 42])
+        //   2. We almost always talk about latitude and longitude, in that order, and
+        //     at the same time we always talk about x,y pairs, in that order.
+        //    Think about the relationship between those two coordinate systems.
+
+        // This projection isn't as familiar as the Mercator, but gives a 
+        //  more accurate picture of the relative sizes of Alaska and Brazil (~1:5)
+        var projection = d3.geo.equirectangular();
+
+        // Create a function that will turn a topoJSON object into the "d" parameter 
+        //  of an SVG <path> element, using the projection.
+        var path = d3.geo.path().projection(projection);   
+
+        // Save a reference to the data outside the scope of the d3.json() function.
+        var worldData;
+
+
+        var continentColor = function(continent){
+            if (continent == "EUROPE"){
+                        return "darkseagreen";
+                    }
+                    else if (continent == "ASIA") {
+                        return "lightcoral";
+                    }
+                    else if (continent == "AFRICA") {
+                        return "indianred";
+                    }
+                    else if (continent == "SOUTH AMERICA") {
+                        return "tomato";
+                    }
+                    else if (continent == "NORTH AMERICA" ){
+                        return "lightsalmon";
+                    }
+                    else if (continent == "EE" ){
+                        return "lemonchiffon";
+                    }
+                    else{
+                        return "white";
+                    }
+
+        };
+
+        d3.json("country_continent.json", function (error, data){
+                continents = data;
+                // The function returns the continent of the country input
+                
+                function getContinent(code) {
+                     for (var i = 0; i < continents.length; i++) {
+                        if (continents[i].iso3_digit_code==code){
+                            return continents[i].continent;
+                        }
+                    }   
+                    return "";          
+                }
+
+                d3.json("world-50m.json", function(error, world) {
+                worldData = world;
+                
+                // Use topojson to create an array containing one object per country.
+                var countries = topojson.feature(world, world.objects.countries).features;
+                
+                g.selectAll("path")
+                    .data(countries)
+                    .enter().append("path")
+                    .attr("d", path)
+                    .style("fill", function (d) {return continentColor(getContinent(d.id))} )
+                    .style("stroke", "#888");
+
+                g.append("rect").attr("y",0)
+                   .attr("x",0)
+                   .attr("height", height)
+                   .attr("width",width)
+                   .style("fill","none")
+                   .style("stroke","black");
+
+
+                g.attr("transform","translate(850,200) scale(.15,.15)");
+            
+            // We can also use our projection directly to map from long/lat pairs to pixel coordinates.
+
+            
+                });
+
+
+         });
+                
+
+
       });
+
+        
+
+        
+
     </script>
+</svg>
+
+
+
+
 </html>
