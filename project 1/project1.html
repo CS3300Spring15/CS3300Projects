@@ -8,12 +8,16 @@
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <style>
-    /* put a border around the svg element so we can see the coordinate system better. */
-    body { font-family: 'Varela', sans-serif; } div { margin: 30px; }
-    svg { }
-    /* The default styles for axis elements stink. What should they be? */
-    .axis path { fill: none; stroke: #777; }
-    .axis line { stroke: #777; }
+        body { 
+            font-family: 'Varela', sans-serif; 
+            } 
+        div { 
+            margin: 30px; 
+        }
+        svg { }
+        /* The default styles for axis elements stink. What should they be? */
+        .axis path { fill: none; stroke: #777; }
+        .axis line { stroke: #777; }
     </style>
   </head>
 
@@ -76,7 +80,7 @@
 
         var xScale = d3.scale.linear().range([40, 750]).domain([0,maxInternet+10]);//Internet Access
         var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop+10]);//Crop Production
-        var radiusScale = d3.scale.sqrt().range([0, 50]).domain([0, maxGDP]);//GDP Per Capita
+        var radiusScale = d3.scale.sqrt().range([0, 30]).domain([0, maxGDP]);//GDP Per Capita
 
         var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
         var yAxis = d3.svg.axis().scale(yScale).orient("left");
