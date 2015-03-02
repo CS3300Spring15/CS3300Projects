@@ -183,7 +183,7 @@
 {"iso2_code":"QA","iso3_code":"QAT","iso3_digit_code":634,"icao_code":"OT","name":"QATAR","continent":"ASIA"},
 {"iso2_code":"RO","iso3_code":"ROM","iso3_digit_code":642,"icao_code":"LR","name":"ROMANIA","continent":"EE"},
 {"iso2_code":"RS","iso3_code":"UNK","iso3_digit_code":688,"icao_code":"BK","name":"KOSOVO","continent":"EE"},
-{"iso2_code":"RU","iso3_code":"RUS","iso3_digit_code":643,"icao_code":"UE","name":"CIS/RUSSIAN FEDERATION","continent":"ASIA"},
+{"iso2_code":"RU","iso3_code":"RUS","iso3_digit_code":643,"icao_code":"UE","name":"CIS/RUSSIAN FEDERATION","continent":"EE"},
 {"iso2_code":"RU","iso3_code":"RUS","iso3_digit_code":643,"icao_code":"UH","name":"CIS/RUSSIAN FEDERATION","continent":"ASIA"},
 {"iso2_code":"RU","iso3_code":"RUS","iso3_digit_code":643,"icao_code":"UI","name":"CIS/RUSSIAN FEDERATION","continent":"ASIA"},
 {"iso2_code":"RU","iso3_code":"RUS","iso3_digit_code":643,"icao_code":"UL","name":"CIS/RUSSIAN FEDERATION","continent":"ASIA"},

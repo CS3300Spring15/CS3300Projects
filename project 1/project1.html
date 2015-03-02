@@ -59,7 +59,7 @@
         svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
-        .attr("x", 950)
+        .attr("x", 750)
         .attr("y", 450)
         .text("Internet users (per 100 people)");
 
@@ -77,6 +77,85 @@
                     .attr("x", 780)
                     .attr("y", 25)
                     .text("Legend:");
+
+        svg.append("text")
+                    .attr("x", 840)
+                    .attr("y", 268)
+                    .text("Central America");
+        var rectangle = svg.append("rect")
+                            .attr("x", 780)
+                            .attr("y", 250)
+                            .attr("width", 45)
+                            .attr("height", 25)
+                            .attr("fill", "lightsalmon");
+
+        svg.append("text")
+                    .attr("x", 840)
+                    .attr("y", 298)
+                    .text("Asia");
+        var rectangle = svg.append("rect")
+                            .attr("x", 780)
+                            .attr("y", 280)
+                            .attr("width", 45)
+                            .attr("height", 25)
+                            .attr("fill", "lightcoral");
+
+        svg.append("text")
+                    .attr("x", 840)
+                    .attr("y", 328)
+                    .text("Africa");
+        var rectangle = svg.append("rect")
+                            .attr("x", 780)
+                            .attr("y", 310)
+                            .attr("width", 45)
+                            .attr("height", 25)
+                            .attr("fill", "indianred");
+
+        svg.append("text")
+                    .attr("x", 840)
+                    .attr("y", 358)
+                    .text("South America");
+        var rectangle = svg.append("rect")
+                            .attr("x", 780)
+                            .attr("y", 340)
+                            .attr("width", 45)
+                            .attr("height", 25)
+                            .attr("fill", "tomato");
+
+        svg.append("text")
+                    .attr("x", 840)
+                    .attr("y", 388)
+                    .text("Eastern Europe");
+        var rectangle = svg.append("rect")
+                            .attr("x", 780)
+                            .attr("y", 370)
+                            .attr("width", 45)
+                            .attr("height", 25)
+                            .attr("fill", "#5DBCD2");
+
+        svg.append("text")
+                    .attr("x", 840)
+                    .attr("y", 418)
+                    .text("Western Europe");
+        var rectangle = svg.append("rect")
+                            .attr("x", 780)
+                            .attr("y", 400)
+                            .attr("width", 45)
+                            .attr("height", 25)
+                            .attr("fill", "darkseagreen");
+
+        svg.append("text")
+                    .attr("x", 840)
+                    .attr("y", 448)
+                    .text("Others");
+        var rectangle = svg.append("rect")
+                            .attr("x", 780)
+                            .attr("y", 430)
+                            .attr("width", 45)
+                            .attr("height", 25)
+                            .attr("fill", "darkgreen");
+
+
 
         var xScale = d3.scale.linear().range([40, 750]).domain([0,maxInternet+10]);//Internet Access
         var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop+10]);//Crop Production
@@ -113,7 +192,7 @@
             else if (d.Region == "EE"){
                 return "#5DBCD2";
             }
-            else if (d.Region == "CA" ){
+            else if (d.Region == "NA" ){
                 return "lightsalmon";
             }
             else{
