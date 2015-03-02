@@ -75,7 +75,7 @@
 
         svg.append("text")
                     .attr("x", 780)
-                    .attr("y", 25)
+                    .attr("y", 15)
                     .text("Legend:");
 
         svg.append("text")
@@ -155,7 +155,26 @@
                             .attr("height", 25)
                             .attr("fill", "darkgreen");
 
+        svg.selectAll("circle")
+            .data([32, 57, 112, 293])
+            .enter().append("circle")
+            .attr("cy", 480)
+            .attr("cx", function(d, i) { return i * 100 + 800; })
+            .attr("r", function(d) { return Math.sqrt(d); });
 
+        svg.append("text")
+                    .attr("x", 790)
+                    .attr("y", 520)
+                    .text("low");
+        
+        svg.append("text")
+                    .attr("x", 1085)
+                    .attr("y", 520)
+                    .text("high");
+        svg.append("text")
+                    .attr("x", 900)
+                    .attr("y", 535)
+                    .text("GDP Per Capita");
 
         var xScale = d3.scale.linear().range([40, 750]).domain([0,maxInternet+10]);//Internet Access
         var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop+10]);//Crop Production
