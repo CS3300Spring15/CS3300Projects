@@ -47,7 +47,7 @@
 
         var svg = d3.select("#canvas").append("svg")
         .attr("height", 1000)
-        .attr("width", 1000);
+        .attr("width", 2000);
 
         var g = svg.append("g");
 
@@ -70,16 +70,9 @@
 
 
         svg.append("text")
-                    .attr("x", 850)
-                    .attr("y", 190)
+                    .attr("x", 750)
+                    .attr("y", 15)
                     .text("Legend:");
-
-        svg.append("rect").attr("x",845)
-                   .attr("y",175)
-                   .attr("height", 105)
-                   .attr("width",154)
-                   .style("fill","none")
-                   .style("stroke","black");
 
         var xScale = d3.scale.linear().range([40, 750]).domain([0,maxInternet+10]);//Internet Access
         var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop+10]);//Crop Production
@@ -132,26 +125,9 @@
         .text(function(d) { return d.CountryCode; })
         .style({opacity:'0.0'});
 
-
         var width = 960,
             height = 500;
-
-        // A projection is like a scale. It takes an argument in the form of a long/lat coordinate
-        //  and returns an x,y coordinate.
-        // Here are a few common mistakes:
-        //   1. The input and output are arrays, not lists of values.
-        //    WRONG: projection(-76, 42)
-        //    RIGHT: projection([-76, 42])
-        //   2. We almost always talk about latitude and longitude, in that order, and
-        //     at the same time we always talk about x,y pairs, in that order.
-        //    Think about the relationship between those two coordinate systems.
-
-        // This projection isn't as familiar as the Mercator, but gives a 
-        //  more accurate picture of the relative sizes of Alaska and Brazil (~1:5)
         var projection = d3.geo.equirectangular();
-
-        // Create a function that will turn a topoJSON object into the "d" parameter 
-        //  of an SVG <path> element, using the projection.
         var path = d3.geo.path().projection(projection);   
 
         // Save a reference to the data outside the scope of the d3.json() function.
@@ -185,7 +161,6 @@
 
         d3.json("country_continent.json", function (error, data){
                 continents = data;
-                // The function returns the continent of the country input
                 
                 function getContinent(code) {
                      for (var i = 0; i < continents.length; i++) {
@@ -199,7 +174,6 @@
                 d3.json("world-50m.json", function(error, world) {
                 worldData = world;
                 
-                // Use topojson to create an array containing one object per country.
                 var countries = topojson.feature(world, world.objects.countries).features;
                 
                 g.selectAll("path")
@@ -216,25 +190,10 @@
                    .style("fill","none")
                    .style("stroke","black");
 
-
-                g.attr("transform","translate(850,200) scale(.15,.15)");
-            
-            // We can also use our projection directly to map from long/lat pairs to pixel coordinates.
-
-            
+                g.attr("transform","translate(750,20) scale(.35,.4)");
                 });
-
-
          });
-                
-
-
       });
-
-        
-
-        
-
     </script>
 </svg>
 
