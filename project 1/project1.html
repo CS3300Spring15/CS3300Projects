@@ -70,8 +70,8 @@
 
 
         svg.append("text")
-                    .attr("x", 750)
-                    .attr("y", 15)
+                    .attr("x", 780)
+                    .attr("y", 25)
                     .text("Legend:");
 
         var xScale = d3.scale.linear().range([40, 750]).domain([0,maxInternet+10]);//Internet Access
@@ -190,7 +190,7 @@
                    .style("fill","none")
                    .style("stroke","black");
 
-                g.attr("transform","translate(750,20) scale(.35,.4)");
+                g.attr("transform","translate(780,30) scale(.35,.4)");
                 });
          });
       });
