@@ -1,7 +1,7 @@
 <html>
   <html>
   <head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
     <!-- Load the d3 library. -->
     <script src="d3.min.js" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -9,7 +9,7 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <style>
     /* put a border around the svg element so we can see the coordinate system better. */
-    body { font-family: "Open Sans"; } div { margin: 30px; }
+    body { font-family: 'Varela', sans-serif; } div { margin: 30px; }
     svg { }
     /* The default styles for axis elements stink. What should they be? */
     .axis path { fill: none; stroke: #777; }
@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <h3>Correlaton between Internet Access and Agricultural Production</h3>
+    <h2>Correlation Between Internet Access and Agricultural Production</h2>
 
     <!-- SVG element-->
     <div id="canvas"></div>
@@ -63,10 +63,10 @@
         svg.append("text")
         .attr("class", "y label")
         .attr("text-anchor", "end")
-        .attr("x", 470)
+        .attr("x", 475)
         .attr("y", 6)
         .attr("dy", ".75em")
-        .text("Crop Production Index adjuested to Employment in Agriculture");
+        .text("Crop Production Index adjusted to Employment in Agriculture");
 
 
         svg.append("text")
@@ -81,8 +81,8 @@
                    .style("fill","none")
                    .style("stroke","black");
 
-        var xScale = d3.scale.linear().range([40, 800]).domain([0,maxInternet]);//Internet Access
-        var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop]);//Crop Production
+        var xScale = d3.scale.linear().range([40, 750]).domain([0,maxInternet+10]);//Internet Access
+        var yScale = d3.scale.linear().range([400, 40]).domain([0, maxCrop+10]);//Crop Production
         var radiusScale = d3.scale.sqrt().range([0, 50]).domain([0, maxGDP]);//GDP Per Capita
 
         var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
@@ -99,7 +99,7 @@
         .attr("cx", function (d) { return xScale(d.InternetUser) })
         .attr("cy", function (d) { return yScale(d.CropProductionIndex) })
         .attr("r",  function (d) { return radiusScale(d.GDPPerCapita)})
-        .attr("opacity", 0.8)
+        .attr("opacity", 0.7)
         .style("fill", function (d) {
             if (d.Region == "Eur"){
                 return "darkseagreen";
@@ -114,7 +114,7 @@
                 return "tomato";
             }
             else if (d.Region == "EE"){
-                return "lemonchiffon";
+                return "#5DBCD2";
             }
             else if (d.Region == "CA" ){
                 return "lightsalmon";
@@ -175,7 +175,7 @@
                         return "lightsalmon";
                     }
                     else if (continent == "EE" ){
-                        return "lemonchiffon";
+                        return "#5DBCD2";
                     }
                     else{
                         return "white";
