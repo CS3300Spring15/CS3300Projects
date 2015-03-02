@@ -61,5 +61,7 @@
 {"CountryName":"United Kingdom","CountryCode":"GBR","InternetUser":89.8441,"CropProductionIndex":76.19166362,"GDPPerCapita":40231.02093,"Continent":"Eur","Region":"Eur"},
 {"CountryName":"Venezuela, RB","CountryCode":"VEN","InternetUser":54.9,"CropProductionIndex":14.95324712,"GDPPerCapita":6401.905166,"Continent":"SA","Region":"SA"},
 {"CountryName":"Vietnam","CountryCode":"VNM","InternetUser":43.9,"CropProductionIndex":2.646202446,"GDPPerCapita":1028.623406,"Continent":"Asia","Region":"Asia"},
+{"CountryName":"United States","CountryCode":"USA","InternetUser":84.2,"CropProductionIndex":90.65,"GDPPerCapita":45710.3,"Continent":"North America","Region":"NA"},
+{"CountryName":"Canada","CountryCode":"","InternetUser":85.8,"CropProductionIndex":58.55,"GDPPerCapita":37524.3,"Continent":"North America","Region":"NA"},
 {"CountryName":"West Bank and Gaza","CountryCode":"PSE","InternetUser":46.6,"CropProductionIndex":8.117391304,"GDPPerCapita":1448.931237,"Continent":"Asia","Region":"Asia"}]
 

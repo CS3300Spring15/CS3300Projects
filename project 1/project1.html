@@ -81,7 +81,7 @@
         svg.append("text")
                     .attr("x", 840)
                     .attr("y", 268)
-                    .text("Central America");
+                    .text("Others");
         var rectangle = svg.append("rect")
                             .attr("x", 780)
                             .attr("y", 250)
@@ -114,7 +114,7 @@
         svg.append("text")
                     .attr("x", 840)
                     .attr("y", 358)
-                    .text("South America");
+                    .text("Central & South America");
         var rectangle = svg.append("rect")
                             .attr("x", 780)
                             .attr("y", 340)
@@ -147,7 +147,7 @@
         svg.append("text")
                     .attr("x", 840)
                     .attr("y", 448)
-                    .text("Others");
+                    .text("North America");
         var rectangle = svg.append("rect")
                             .attr("x", 780)
                             .attr("y", 430)
@@ -193,10 +193,10 @@
                 return "#5DBCD2";
             }
             else if (d.Region == "NA" ){
-                return "lightsalmon";
+                return "darkgreen";
             }
             else{
-                return "darkgreen";
+                return "lightsalmon";
             }
         });
 
@@ -231,7 +231,7 @@
                         return "tomato";
                     }
                     else if (continent == "NORTH AMERICA" ){
-                        return "lightsalmon";
+                        return "darkgreen";
                     }
                     else if (continent == "EE" ){
                         return "#5DBCD2";
