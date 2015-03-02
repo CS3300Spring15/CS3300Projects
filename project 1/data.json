@@ -5,6 +5,7 @@
 {"CountryName":"Bosnia and Herzegovina","CountryCode":"BIH","InternetUser":67.9,"CropProductionIndex":4.086341463,"GDPPerCapita":3403.535166,"Continent":"Eur","Region":"EE"},
 {"CountryName":"Bulgaria","CountryCode":"BGR","InternetUser":53.0615,"CropProductionIndex":16.02968726,"GDPPerCapita":4807.687475,"Continent":"Eur","Region":"EE"},
 {"CountryName":"Cambodia","CountryCode":"KHM","InternetUser":6,"CropProductionIndex":3.822941176,"GDPPerCapita":708.8284924,"Continent":"Africa","Region":"Africa"},
+{"CountryName":"Canada","CountryCode":"","InternetUser":85.8,"CropProductionIndex":58.55,"GDPPerCapita":37524.3,"Continent":"North America","Region":"NA"},
 {"CountryName":"Colombia","CountryCode":"COL","InternetUser":51.7,"CropProductionIndex":6.054438006,"GDPPerCapita":4394.066614,"Continent":"SA","Region":"SA"},
 {"CountryName":"Costa Rica","CountryCode":"CRI","InternetUser":45.96,"CropProductionIndex":8.808955474,"GDPPerCapita":5839.251911,"Continent":"NA","Region":"CA"},
 {"CountryName":"Croatia","CountryCode":"HRV","InternetUser":66.7476,"CropProductionIndex":6.094890595,"GDPPerCapita":10563.1075,"Continent":"Eur","Region":"EE"},
@@ -59,9 +60,8 @@
 {"CountryName":"Thailand","CountryCode":"THA","InternetUser":28.94,"CropProductionIndex":3.115656686,"GDPPerCapita":3437.841215,"Continent":"Asia","Region":"Asia"},
 {"CountryName":"Turkey","CountryCode":"TUR","InternetUser":46.25,"CropProductionIndex":4.785169414,"GDPPerCapita":8722.92227,"Continent":"Eur","Region":"EE"},
 {"CountryName":"United Kingdom","CountryCode":"GBR","InternetUser":89.8441,"CropProductionIndex":76.19166362,"GDPPerCapita":40231.02093,"Continent":"Eur","Region":"Eur"},
+{"CountryName":"United States","CountryCode":"USA","InternetUser":84.2,"CropProductionIndex":90.65,"GDPPerCapita":45710.3,"Continent":"North America","Region":"NA"},
 {"CountryName":"Venezuela, RB","CountryCode":"VEN","InternetUser":54.9,"CropProductionIndex":14.95324712,"GDPPerCapita":6401.905166,"Continent":"SA","Region":"SA"},
 {"CountryName":"Vietnam","CountryCode":"VNM","InternetUser":43.9,"CropProductionIndex":2.646202446,"GDPPerCapita":1028.623406,"Continent":"Asia","Region":"Asia"},
-{"CountryName":"United States","CountryCode":"USA","InternetUser":84.2,"CropProductionIndex":90.65,"GDPPerCapita":45710.3,"Continent":"North America","Region":"NA"},
-{"CountryName":"Canada","CountryCode":"","InternetUser":85.8,"CropProductionIndex":58.55,"GDPPerCapita":37524.3,"Continent":"North America","Region":"NA"},
 {"CountryName":"West Bank and Gaza","CountryCode":"PSE","InternetUser":46.6,"CropProductionIndex":8.117391304,"GDPPerCapita":1448.931237,"Continent":"Asia","Region":"Asia"}]
 
