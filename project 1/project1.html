@@ -33,7 +33,7 @@
 
       d3.json("data.json", function (error, data){
         numbers = data;
-
+        //The following section of code on creating the bubble map is written based on what we learnt in class with Prof. Mimno
         var maxCrop = d3.max(numbers,
           function (d) {
             return d.CropProductionIndex;
@@ -155,19 +155,21 @@
                             .attr("height", 25)
                             .attr("fill", "darkgreen");
 
-        //The key for what the circles represent
+        //The legend for what the circles represent, part of it is derived from online tutorial http://bost.ocks.org/mike/circles/
         svg.selectAll("circle")
             .data([32, 57, 112, 293])
             .enter().append("circle")
             .attr("cy", 480)
-            .attr("cx", function(d, i) { return i * 100 + 800; })
-            .attr("r", function(d) { return Math.sqrt(d); });
-
+            .attr("cx", function(d, i) { 
+                return i * 100 + 800; 
+            })
+            .attr("r", function(d) { 
+                return Math.sqrt(d); 
+            });
         svg.append("text")
                     .attr("x", 790)
                     .attr("y", 520)
                     .text("low");
-        
         svg.append("text")
                     .attr("x", 1085)
                     .attr("y", 520)
@@ -221,7 +223,7 @@
             }
         });
 
-
+        //The following code is for debugging purpose. Changing the opacity allows you to see which coountry the circle represents.
         var texts = contents.selectAll("text").data(numbers).enter().append("text");
   
         texts.attr("x", function(d) { return xScale(d.InternetUser) })
@@ -229,6 +231,8 @@
         .text(function(d) { return d.CountryCode; })
         .style({opacity:'0.0'});
 
+
+        //The following code on creating the world map legend is written based on what we learnt in class with Prof. Mimno
         var width = 960,
             height = 500;
         var projection = d3.geo.equirectangular();
@@ -236,7 +240,6 @@
 
         // Save a reference to the data outside the scope of the d3.json() function.
         var worldData;
-
 
         var continentColor = function(continent){
             if (continent == "EUROPE"){
